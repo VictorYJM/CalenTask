@@ -16,4 +16,5 @@
 @layer components {
     .background-change { @apply bg-background-white dark:bg-background-black; }
     .text-change { @apply text-text-black dark:text-text-white; }
+    .social-icon-link { @apply hover:text-gray-500 active:text-pink-500 dark:hover:text-pink-500 dark:active:text-gray-500 transition-colors duration-200; }
 }
