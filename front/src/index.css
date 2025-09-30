@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-monospace: "Roboto Mono", sans-serif;
+
+    --color-background-white: #cecece;
+    --color-text-white: #bdbdbd;
+
+    --color-background-black: #121212;
+    --color-text-black: #232323;
+}
+
+@layer components {
+    .background-change { @apply bg-background-white dark:bg-background-black; }
+    .text-change { @apply text-text-black dark:text-text-white; }
+}
