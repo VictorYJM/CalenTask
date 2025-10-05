@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-monospace: "Roboto Mono", sans-serif;
+
+    --color-background-white: #cecece;
+    --color-text-white: #bdbdbd;
+
+    --color-background-black: #121212;
+    --color-text-black: #232323;
+
+    --color-arrow-light: #e6e6e6;
+    --color-arrow-dark: #1f2937;
+}
+
+@layer components {
+    .bg-main { @apply bg-background-white dark:bg-background-black; }
+    .text-main { @apply text-text-black dark:text-text-white; }
+
+    .hover-arrows { @apply hover:bg-arrow-light dark:hover:bg-arrow-dark; }
+    .menu-items { @apply data-[focus]:bg-arrow-light data-[focus]:text-arrow-dark dark:data-[focus]:bg-arrow-dark dark:data-[focus]:text-arrow-light }
+    
+    .social-icon-link { @apply hover:text-gray-500 active:text-blue-500 dark:hover:text-blue-500 dark:active:text-gray-500 transition-colors duration-200; }
+}
