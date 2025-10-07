@@ -1,4 +1,4 @@
-import { useState, useMemo, type FC } from "react";
+import { useMemo, type FC } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { FaChevronLeft, FaChevronRight, FaChevronUp, FaChevronDown } from "react-icons/fa";
 
@@ -7,9 +7,12 @@ const monthNames: string[] = [
     "July", "August", "September", "October", "November", "December"
 ];
 
-const CalendarNavigator: FC = () => {
-    const [currentDate, setCurrentDate] = useState<Date>(new Date());
+interface CalendarNavigatorProps {
+    currentDate: Date;
+    setCurrentDate: (update: Date | ((prevDate:Date) => Date)) => void;
+};
 
+const CalendarNavigator: FC<CalendarNavigatorProps> = ({ currentDate, setCurrentDate }) => {
     /* Assign min and max date limits */
     const { minDate, maxDate } = useMemo<{ minDate: Date; maxDate: Date }>(() => {
         const today = new Date();
@@ -24,6 +27,7 @@ const CalendarNavigator: FC = () => {
     const canGoBackYear = currentDate.getFullYear() > minDate.getFullYear();
     const canGoForwardYear = currentDate.getFullYear() < maxDate.getFullYear();
 
+    /* Tries to navigate to previous month (arrow) */
     const handlePreviousMonth = (): void => {
         if (canGoBackMonth) {
             setCurrentDate(prevDate => {
@@ -34,6 +38,7 @@ const CalendarNavigator: FC = () => {
         }
     };
 
+    /* Tries to navigate to next month (arrow) */
     const handleNextMonth = (): void => {
         if (canGoForwardMonth) {
             setCurrentDate(prevDate => {
@@ -44,6 +49,7 @@ const CalendarNavigator: FC = () => {
         }
     };
 
+    /* Manage month selection from dropdown list */
     const handleMonthSelect = (index: number): void => {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate);
@@ -56,6 +62,7 @@ const CalendarNavigator: FC = () => {
         });
     };
 
+    /* Managing the change of year (arrow) */
     const handleYearChange = (increment: number): void => {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate);
@@ -110,7 +117,7 @@ const CalendarNavigator: FC = () => {
                 <div className="flex items-center space-x-2">
                     <span className="font-semibold text-lg">{currentDate.getFullYear()}</span>
 
-                    {/* Yaer navigation */}
+                    {/* Year navigation */}
                     <div className="flex flex-col">
                         {/* Year navigation by arrow (next) */}
                         <button

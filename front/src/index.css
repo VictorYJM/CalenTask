@@ -14,14 +14,42 @@
 
     --color-arrow-light: #e6e6e6;
     --color-arrow-dark: #1f2937;
+
+    --color-icons-main: #3b82f6;
+    --color-icons-sub: #1e3a8a;
 }
 
 @layer components {
     .bg-main { @apply bg-background-white dark:bg-background-black; }
+    .bg-inverse { @apply dark:bg-background-white bg-background-black; }
+
     .text-main { @apply text-text-black dark:text-text-white; }
+    .text-inverse { @apply dark:text-text-black text-text-white; }
 
     .hover-arrows { @apply hover:bg-arrow-light dark:hover:bg-arrow-dark; }
     .menu-items { @apply data-[focus]:bg-arrow-light data-[focus]:text-arrow-dark dark:data-[focus]:bg-arrow-dark dark:data-[focus]:text-arrow-light }
     
-    .social-icon-link { @apply hover:text-gray-500 active:text-blue-500 dark:hover:text-blue-500 dark:active:text-gray-500 transition-colors duration-200; }
+    .social-icon-link { @apply hover:text-icons-main active:text-icons-sub dark:hover:text-icons-main dark:active:text-icons-sub transition-colors duration-200; }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(206, 206, 206, 1);
+    border-radius: 20px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(18, 18, 18, 1);
+    border-radius: 20px;
+}
+
+.dark .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(206, 206, 206, 1) transparent;
+}
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(18, 18, 18, 1) transparent;
 }

@@ -1,4 +1,5 @@
-import Header from "../components/sections/Navbar"
+import Header from "../components/sections/Header"
+import Footer from "../components/sections/Footer"
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <main className="flex-grow">
       
       </main>
+      <Footer />
     </div>
   )
 }
